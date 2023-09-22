@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/templates/homeTemplate#{plantillaController.getRoleTemplate()}.xhtml">
+
+            <ui:define name="content">
+                <h3 class="text-dark mb-4">Almacén</h3>
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">Componentes</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">Materiales</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">Secciones</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" role="tabpanel" id="tab-1">
+                            <div class="card shadow">
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 fw-bold">Componentes</p>
+                                </div>
+                                <h:form>
+                                    <div class="card-body">
+                                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                            <p:dataTable class="table my-0" id="dataTable" var="componente" value="#{componentsController.componentsList}">
+                                                <p:column headerText="Imagen de componente">
+                                                    <h:graphicImage class="rounded-circle me-2" width="40" height="40" url="../../assets/img/components/componente#{componente.id}.png" />
+                                                </p:column>
+                                                <p:column headerText="Nombre">
+                                                    <h:outputText value="#{componente.name}"/>
+                                                </p:column>
+                                                <p:column headerText="UPC">
+                                                    <h:outputText value="#{componente.upc}"/>
+                                                </p:column>
+                                                <p:column headerText="Cantidad">
+                                                    <h:outputText value="#{componente.quantity}"/>
+                                                </p:column>
+                                                <p:column headerText="Precio de venta">
+                                                    <h:outputText value="#{componente.price}  €"/>
+                                                </p:column>
+                                            </p:dataTable>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                        <div class="tab-pane" role="tabpanel" id="tab-2">
+                            <div class="card shadow">
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 fw-bold">Materiales</p>
+                                </div>
+                                <h:form>
+                                    <div class="card-body">
+                                        <div class="table-responsive table mt-2" id="dataTable22" role="grid" aria-describedby="dataTable_info">
+                                            <p:dataTable class="table my-0" id="dataTable2" var="materiales" value="#{materialsController.materialsList}">
+                                                <p:column headerText="Imagen">
+                                                    <h:graphicImage class="rounded-circle me-2" width="40" height="40" url="../../assets/img/materials/material#{materiales.id}.png" />
+                                                </p:column>
+                                                <p:column headerText="Nombre">
+                                                    <h:outputText value="#{materiales.name}"/>
+                                                </p:column>
+                                                <p:column headerText="UPC">
+                                                    <h:outputText value="#{materiales.upc}"/>
+                                                </p:column>
+                                                <p:column headerText="Cantidad">
+                                                    <h:outputText value="#{materiales.quantity}"/>
+                                                </p:column>
+                                                <p:column headerText="Precio de compra">
+                                                    <h:outputText value="#{materiales.price} €"/>
+                                                </p:column>
+                                                <p:column headerText="Proveedor">
+                                                    <h:outputText value="#{materiales.idSupplier.name}"/>
+                                                </p:column>
+                                                <p:column headerText="Tlf de proveedor">
+                                                    <h:outputText value="#{materiales.idSupplier.phoneNumber}"/>
+                                                </p:column>
+                                            </p:dataTable>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                        <div class="tab-pane" role="tabpanel" id="tab-3">
+                            <div class="card shadow">
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 fw-bold">Secciones</p>
+                                </div>
+                                <h:form>
+                                    <div class="card-body">
+                                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                            <table class="table my-0" id="dataTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre de sección</th>
+                                                        <th>Tipo de componentes almacenados</th>
+                                                        <th>Sector</th>
+                                                        <th>Fecha de creación</th>
+                                                        <th>Presupuesto</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><img class="rounded-circle me-2" width="50" height="50" src="./../assets/img/secciones/cepilleria.png"/>Cepillería</td>
+                                                        <td>Piezas para la industria cepillera</td>
+                                                        <td>F</td>
+                                                        <td>2008/11/28</td>
+                                                        <td>162,700€</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img class="rounded-circle me-2" width="50" height="50" src="./../assets/img/secciones/prodpropios.png"/>Productos propios</td>
+                                                        <td>Productos no catalogados en una sección</td>
+                                                        <td>A</td>
+                                                        <td>2009/10/09<br/></td>
+                                                        <td>1,200,000€</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img class="rounded-circle me-2" width="50" height="50" src="./../assets/img/secciones/confiteria.png"/>Confitería</td>
+                                                        <td>Platos y bandejas de confitería artesana</td>
+                                                        <td>C</td>
+                                                        <td>2009/01/12<br/></td>
+                                                        <td>86,000€</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img class="rounded-circle me-2" width="50" height="50" src="./../assets/img/secciones/3D.png"/>Modelado 3D</td>
+                                                        <td>Piezas industriales a medida en 3D</td>
+                                                        <td>B</td>
+                                                        <td>2012/10/13<br/></td>
+                                                        <td>132,000€</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img class="rounded-circle me-2" width="50" height="50" src="./../assets/img/secciones/pajareria.png"/>Pajarería</td>
+                                                        <td>Toda clase de piezas de plástico para la industria pajarera</td>
+                                                        <td>D</td>
+                                                        <td>2011/06/07<br/></td>
+                                                        <td>206,850€</td>
+                                                    </tr>
+
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td><strong>Nombre de sección</strong></td>
+                                                        <td><strong>Tipo de componentes almacenados</strong></td>
+                                                        <td><strong>Sector</strong></td>
+                                                        <td><strong>Fecha de creación</strong></td>
+                                                        <td><strong>Presupuesto</strong></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
